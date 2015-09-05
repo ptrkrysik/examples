@@ -23,7 +23,9 @@ if __name__ == '__main__':
         help="Set input file name [default=%default]")
 
     (options, args) = parser.parse_args()
-
+    
+    socket_pdu_0_0 = blocks.socket_pdu("UDP_SERVER", "127.0.0.1", "4729", 10000, False)
+    
     topblock = gr.top_block()
     file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, options.ifile_name, False)
     wideband_receiver_0 = wideband_receiver(OSR=4, fc=options.carrier_freq, samp_rate=options.samp_rate)
