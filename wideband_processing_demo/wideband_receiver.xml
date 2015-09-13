@@ -1,0 +1,39 @@
+<block>
+  <name>Wideband Receiver</name>
+  <key>wideband_receiver</key>
+  <category>Custom</category>
+  <import>from wideband_receiver import wideband_receiver  # grc-generated hier_block</import>
+  <make>wideband_receiver(
+    OSR=$OSR,
+    fc=$fc,
+    samp_rate=$samp_rate,
+)</make>
+  <callback>set_OSR($OSR)</callback>
+  <callback>set_fc($fc)</callback>
+  <callback>set_samp_rate($samp_rate)</callback>
+  <param>
+    <name>OSR</name>
+    <key>OSR</key>
+    <value>4</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>fc</name>
+    <key>fc</key>
+    <value>0</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>samp_rate</name>
+    <key>samp_rate</key>
+    <value>400e3</value>
+    <type>raw</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+    <vlen>1</vlen>
+  </sink>
+  <doc>wideband_receiver.py</doc>
+  <grc_source></grc_source>
+</block>
