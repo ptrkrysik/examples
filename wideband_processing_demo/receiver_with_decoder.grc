@@ -144,65 +144,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_socket_pdu</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1136, 315)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>host</key>
-      <value>127.0.0.1</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_socket_pdu_0</value>
-    </param>
-    <param>
-      <key>mtu</key>
-      <value>10000</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>4729</value>
-    </param>
-    <param>
-      <key>tcp_no_delay</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>"UDP_CLIENT"</value>
-    </param>
-  </block>
-  <block>
     <key>pad_sink</key>
     <param>
       <key>comment</key>
@@ -520,45 +461,6 @@
     </param>
   </block>
   <block>
-    <key>gsm_message_printer</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1064, 507)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gsm_message_printer_0</value>
-    </param>
-    <param>
-      <key>prepend_string</key>
-      <value></value>
-    </param>
-    <param>
-      <key>print_gsmtap_header</key>
-      <value>False</value>
-    </param>
-  </block>
-  <block>
     <key>gsm_receiver</key>
     <param>
       <key>alias</key>
@@ -802,18 +704,6 @@
     <sink_block_id>gsm_input_0</sink_block_id>
     <source_key>ppm</source_key>
     <sink_key>ppm_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_control_channels_decoder_0</source_block_id>
-    <sink_block_id>blocks_socket_pdu_0</sink_block_id>
-    <source_key>msgs</source_key>
-    <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_control_channels_decoder_0</source_block_id>
-    <sink_block_id>gsm_message_printer_0</sink_block_id>
-    <source_key>msgs</source_key>
-    <sink_key>msgs</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_control_channels_decoder_0</source_block_id>

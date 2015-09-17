@@ -2,10 +2,9 @@
 # GNU Radio Python Flow Graph
 # Title: Receiver With Decoder
 # Author: Piotr Krysik
-# Generated: Sat Sep  5 14:49:50 2015
+# Generated: Thu Sep 17 19:49:57 2015
 ##################################################
 
-from gnuradio import blocks
 from gnuradio import gr
 from gnuradio.filter import firdes
 import grgsm
@@ -49,7 +48,6 @@ class receiver_with_decoder(gr.hier_block2):
         self.gsm_control_channels_decoder_0 = grgsm.control_channels_decoder()
         self.gsm_clock_offset_control_0 = grgsm.clock_offset_control(fc)
         self.gsm_bcch_ccch_demapper_0 = grgsm.universal_ctrl_chans_demapper(0, ([2,6,12,16,22,26,32,36,42,46]), ([1,2,2,2,2,2,2,2,2,2]))
-        self.blocks_socket_pdu_0 = blocks.socket_pdu("UDP_CLIENT", "127.0.0.1", "4729", 10000, False)
 
         ##################################################
         # Connections
@@ -57,7 +55,6 @@ class receiver_with_decoder(gr.hier_block2):
         self.msg_connect((self.gsm_bcch_ccch_demapper_0, 'bursts'), (self, 'bursts'))    
         self.msg_connect((self.gsm_bcch_ccch_demapper_0, 'bursts'), (self.gsm_control_channels_decoder_0, 'bursts'))    
         self.msg_connect((self.gsm_clock_offset_control_0, 'ppm'), (self.gsm_input_0, 'ppm_in'))    
-        self.msg_connect((self.gsm_control_channels_decoder_0, 'msgs'), (self.blocks_socket_pdu_0, 'pdus'))    
         self.msg_connect((self.gsm_control_channels_decoder_0, 'msgs'), (self, 'msgs'))    
         self.msg_connect((self.gsm_receiver_0, 'C0'), (self.gsm_bcch_ccch_demapper_0, 'bursts'))    
         self.msg_connect((self.gsm_receiver_0, 'measurements'), (self.gsm_clock_offset_control_0, 'measurements'))    
