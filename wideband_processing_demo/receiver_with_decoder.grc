@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.8rc1'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Thu Nov  6 14:43:22 2014</timestamp>
   <block>
@@ -7,10 +7,6 @@
     <param>
       <key>author</key>
       <value>Piotr Krysik</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
     </param>
     <param>
       <key>window_size</key>
@@ -45,6 +41,10 @@
       <value>hb</value>
     </param>
     <param>
+      <key>hier_block_src_path</key>
+      <value>.:</value>
+    </param>
+    <param>
       <key>id</key>
       <value>receiver_with_decoder</value>
     </param>
@@ -53,8 +53,16 @@
       <value>0</value>
     </param>
     <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
       <key>realtime_scheduling</key>
       <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
     </param>
     <param>
       <key>run_options</key>
@@ -313,14 +321,6 @@
     <param>
       <key>timeslot_nr</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>channel_types</key>
-      <value>[1,2,2,2,2,2,2,2,2,2]</value>
-    </param>
-    <param>
-      <key>starts_fn_mod51</key>
-      <value>[2,6,12,16,22,26,32,36,42,46]</value>
     </param>
   </block>
   <block>
@@ -689,12 +689,6 @@
   </block>
   <connection>
     <source_block_id>gsm_bcch_ccch_demapper_0</source_block_id>
-    <sink_block_id>bursts</sink_block_id>
-    <source_key>bursts</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_bcch_ccch_demapper_0</source_block_id>
     <sink_block_id>gsm_control_channels_decoder_0</sink_block_id>
     <source_key>bursts</source_key>
     <sink_key>bursts</sink_key>
@@ -707,9 +701,15 @@
   </connection>
   <connection>
     <source_block_id>gsm_control_channels_decoder_0</source_block_id>
+    <sink_block_id>bursts</sink_block_id>
+    <source_key>msgs</source_key>
+    <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_control_channels_decoder_0</source_block_id>
     <sink_block_id>msgs</sink_block_id>
     <source_key>msgs</source_key>
-    <sink_key>0</sink_key>
+    <sink_key>in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_input_0</source_block_id>

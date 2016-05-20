@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='ASCII'?>
-<?grc format='1' created='3.7.8'?>
+<?xml version='1.0' encoding='utf-8'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Sat Dec 13 10:46:37 2014</timestamp>
   <block>
@@ -9,8 +9,8 @@
       <value></value>
     </param>
     <param>
-      <key>alias</key>
-      <value></value>
+      <key>window_size</key>
+      <value>1480, 1224</value>
     </param>
     <param>
       <key>category</key>
@@ -41,6 +41,10 @@
       <value>no_gui</value>
     </param>
     <param>
+      <key>hier_block_src_path</key>
+      <value>.:</value>
+    </param>
+    <param>
       <key>id</key>
       <value>airprobe_tchf</value>
     </param>
@@ -49,8 +53,16 @@
       <value>0</value>
     </param>
     <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
       <key>realtime_scheduling</key>
       <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
     </param>
     <param>
       <key>run_options</key>
@@ -67,10 +79,6 @@
     <param>
       <key>title</key>
       <value></value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1480, 1224</value>
     </param>
   </block>
   <block>
@@ -484,6 +492,10 @@
   <block>
     <key>gsm_decryption</key>
     <param>
+      <key>a5_version</key>
+      <value>1</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -526,6 +538,10 @@
   </block>
   <block>
     <key>gsm_decryption</key>
+    <param>
+      <key>a5_version</key>
+      <value>1</value>
+    </param>
     <param>
       <key>alias</key>
       <value></value>
@@ -653,8 +669,20 @@
       <value>gsm_message_printer_0</value>
     </param>
     <param>
+      <key>prepend_frame_count</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>prepend_fnr</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>prepend_string</key>
       <value>""</value>
+    </param>
+    <param>
+      <key>print_gsmtap_header</key>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -688,8 +716,20 @@
       <value>gsm_message_printer_0_0</value>
     </param>
     <param>
+      <key>prepend_frame_count</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>prepend_fnr</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>prepend_string</key>
       <value>""</value>
+    </param>
+    <param>
+      <key>print_gsmtap_header</key>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -723,8 +763,20 @@
       <value>gsm_message_printer_0_1</value>
     </param>
     <param>
+      <key>prepend_frame_count</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>prepend_fnr</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>prepend_string</key>
       <value>""</value>
+    </param>
+    <param>
+      <key>print_gsmtap_header</key>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -865,7 +917,11 @@
     </param>
     <param>
       <key>mode</key>
-      <value>grgsm.MODE_SPEECH_FR</value>
+      <value>grgsm.TCH_FS</value>
+    </param>
+    <param>
+      <key>boundary_check</key>
+      <value>True</value>
     </param>
     <param>
       <key>file</key>
@@ -911,16 +967,32 @@
       <value>0</value>
     </param>
     <param>
-      <key>channel_types</key>
-      <value>[BCCH,CCCH,CCCH,CCCH,CCCH,CCCH,CCCH,CCCH,CCCH,CCCH]</value>
+      <key>downlink_channel_types</key>
+      <value>[0,0,1,1,1,1,2,2,2,2,0,0,2,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,2,0,]</value>
     </param>
     <param>
-      <key>starts_fn_mod51</key>
-      <value>[2,6,12,16,22,26,32,36,42,46]</value>
+      <key>downlink_starts_fn_mod51</key>
+      <value>[0,0,2,2,2,2,6,6,6,6,0,0,12,12,12,12,16,16,16,16,0,0,22,22,22,22,26,26,26,26,0,0,32,32,32,32,36,36,36,36,0,0,42,42,42,42,46,46,46,46,0,]</value>
+    </param>
+    <param>
+      <key>downlink_subslots</key>
+      <value>[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]</value>
     </param>
     <param>
       <key>timeslot_nr</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>uplink_channel_types</key>
+      <value>[2,2,2,2,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0,2,2,2,2,]</value>
+    </param>
+    <param>
+      <key>uplink_starts_fn_mod51</key>
+      <value>[0,0,0,0,0,0,6,6,6,6,10,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,37,37,37,41,41,41,41,0,0,47,47,47,47]</value>
+    </param>
+    <param>
+      <key>uplink_subslots</key>
+      <value>[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]</value>
     </param>
   </block>
   <block>
