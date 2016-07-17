@@ -544,8 +544,16 @@
       <value>0</value>
     </param>
     <param>
+      <key>osr</key>
+      <value>osr</value>
+    </param>
+    <param>
       <key>fc</key>
       <value>fc</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
     </param>
   </block>
   <block>
@@ -987,7 +995,7 @@
     </param>
     <param>
       <key>osr</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
     <param>
       <key>fc</key>
@@ -1042,7 +1050,7 @@
     </param>
     <param>
       <key>osr</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
     <param>
       <key>fc</key>
@@ -1097,7 +1105,7 @@
     </param>
     <param>
       <key>osr</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
     <param>
       <key>fc</key>
@@ -1152,7 +1160,7 @@
     </param>
     <param>
       <key>osr</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
     <param>
       <key>fc</key>
@@ -1262,7 +1270,7 @@
     </param>
     <param>
       <key>osr</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
     <param>
       <key>tseq_nums</key>
@@ -1401,9 +1409,48 @@
       <key>boundary_check</key>
       <value>True</value>
     </param>
+  </block>
+  <block>
+    <key>parameter</key>
     <param>
-      <key>file</key>
-      <value>speech.au.gsm</value>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(544, 15)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>osr</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>OSR</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -1630,26 +1677,26 @@
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
     <sink_block_id>gsm_input_0</sink_block_id>
-    <source_key>ppm</source_key>
-    <sink_key>ppm_in</sink_key>
+    <source_key>ctrl</source_key>
+    <sink_key>ctrl_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
     <sink_block_id>gsm_input_0_0</sink_block_id>
-    <source_key>ppm</source_key>
-    <sink_key>ppm_in</sink_key>
+    <source_key>ctrl</source_key>
+    <sink_key>ctrl_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
     <sink_block_id>gsm_input_0_0_0</sink_block_id>
-    <source_key>ppm</source_key>
-    <sink_key>ppm_in</sink_key>
+    <source_key>ctrl</source_key>
+    <sink_key>ctrl_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
     <sink_block_id>gsm_input_0_0_0_0</sink_block_id>
-    <source_key>ppm</source_key>
-    <sink_key>ppm_in</sink_key>
+    <source_key>ctrl</source_key>
+    <sink_key>ctrl_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_control_channels_decoder_0</source_block_id>
