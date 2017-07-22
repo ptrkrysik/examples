@@ -15,7 +15,6 @@ import osmosdr
 import grgsm
 
 from wideband_receiver import *
-from recording import recording
 
 import numpy
 
