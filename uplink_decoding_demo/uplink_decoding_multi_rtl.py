@@ -5,7 +5,7 @@
 # Title: Uplink decoding demo
 # Author: Piotr Krysik
 # Description: Demonstration of uplink decoding using data captured with use of Multi-rtl
-# Generated: Fri Jul 21 22:41:12 2017
+# Generated: Thu Jul 27 01:11:23 2017
 ##################################################
 
 from gnuradio import blocks
@@ -36,6 +36,7 @@ class uplink_decoding_multi_rtl(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
+        self.socket_pdu_server = blocks.socket_pdu("UDP_SERVER", '127.0.0.1', '4729', 10000, False)
         self.gsm_sdcch8_demapper_0 = grgsm.gsm_sdcch8_demapper(
             timeslot_nr=1,
         )
