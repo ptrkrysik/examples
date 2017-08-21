@@ -17,8 +17,8 @@ class wideband_receiver(grgsm.hier_block):
             gr.io_signature(1, 1, gr.sizeof_gr_complex*1),
             gr.io_signature(0, 0, 0),
         )
-        self.message_port_register_hier_in("bursts")
-        self.message_port_register_hier_in("msgs")
+        self.message_port_register_hier_out("bursts")
+        self.message_port_register_hier_out("msgs")
         self.__init(OSR, fc, samp_rate)
     
     def __init(self, OSR=4, fc=939.4e6, samp_rate=0.4e6):
