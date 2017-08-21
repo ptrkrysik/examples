@@ -7,6 +7,8 @@ from gnuradio.filter import pfb
 from receiver_with_decoder import receiver_with_decoder
 from gnuradio import blocks
 
+import grgsm
+
 class wideband_receiver(grgsm.hier_block):
 
     def __init__(self, OSR=4, fc=939.4e6, samp_rate=0.4e6):
