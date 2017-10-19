@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.12'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Wed Sep 13 23:00:21 2017</timestamp>
   <block>
@@ -73,20 +73,12 @@
       <value>True</value>
     </param>
     <param>
-      <key>sizing_mode</key>
-      <value>fixed</value>
-    </param>
-    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value>Test of RX and TX integration</value>
-    </param>
-    <param>
-      <key>placement</key>
-      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -146,7 +138,7 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>const_num</key>
-      <value>250</value>
+      <value>200</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -181,7 +173,7 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -209,6 +201,88 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/piotr/GRGSM_TRX/integracja_tx_rx/dane_we/synchro_test2</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(64, 350)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1008, 705)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>alias</key>
@@ -228,7 +302,7 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 468)</value>
+      <value>(728, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -253,6 +327,140 @@ class add_const_to_frame_number(gr.sync_block):
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Burst to fn_time', 'burst_to_fn_time', [], [('bursts_in', 'message')], [('fn_time_out', 'message')], '')</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each this file is saved, GRC will instantiate the first class it finds to get
+ports and parameters of your block. The arguments to __init__  will be the
+parameters. All of them are required to have default values!
+"""
+import numpy as np
+from gnuradio import gr
+import pmt
+
+class burst_to_fn_time(gr.basic_block):
+    def __init__(self):  # only default arguments here
+        gr.basic_block.__init__(
+            self,
+            name='Burst to fn_time',
+            in_sig=[],
+            out_sig=[]
+        )
+        self.message_port_register_in(pmt.intern("bursts_in"))
+        self.message_port_register_out(pmt.intern("fn_time_out"))
+        self.set_msg_handler(pmt.intern("bursts_in"), self.convert)
+    
+    def convert(self, msg):
+        fn_time = pmt.dict_ref(pmt.car(msg),pmt.intern("fn_time"),pmt.PMT_NIL)
+        fn_time_msg = pmt.dict_add(pmt.make_dict(), pmt.intern("fn_time"), fn_time)
+        if pmt.to_python(fn_time) is not None:
+            self.message_port_pub(pmt.intern("fn_time_out"), fn_time_msg)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 369)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>burst_to_fn_time_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Burst type filter', 'burst_type_filter', [('burst_types', '[]')], [('bursts_in', 'message')], [('bursts_out', 'message')], '')</value>
+    </param>
+    <param>
+      <key>burst_types</key>
+      <value>[1,3,6]</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each this file is saved, GRC will instantiate the first class it finds to get
+ports and parameters of your block. The arguments to __init__  will be the
+parameters. All of them are required to have default values!
+"""
+import numpy as np
+from gnuradio import gr
+import pmt
+
+class burst_type_filter2(gr.sync_block):
+    def __init__(self, burst_types=[]):
+        gr.sync_block.__init__(
+            self,
+            name='Burst type filter',
+            in_sig=[],
+            out_sig=[]
+        )
+        self.burst_types = burst_types
+        self.message_port_register_in(pmt.intern("bursts_in"))
+        self.message_port_register_out(pmt.intern("bursts_out"))
+        self.set_msg_handler(pmt.intern("bursts_in"), self.filter)
+    
+    def filter(self, msg):
+        burst_with_header = pmt.to_python(pmt.cdr(msg))
+        burst = burst_with_header[-148:]
+        header = np.ndarray.tolist(burst_with_header[0:-148])
+        burst_type = header[12]
+        if burst_type in self.burst_types:
+            self.message_port_pub(pmt.intern("bursts_out"), msg)
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1040, 292)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>burst_type_filter_1</value>
     </param>
   </block>
   <block>
@@ -327,46 +535,10 @@ class burst_type_filter(gr.sync_block):
     </param>
   </block>
   <block>
-    <key>epy_block</key>
+    <key>parameter</key>
     <param>
       <key>alias</key>
       <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Burst to fn_time', 'gsmtap_header_remover', [], [('bursts_in', 'message', 1)], [('fn_time_out', 'message', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-import pmt
-
-class gsmtap_header_remover(gr.sync_block):
-    def __init__(self):  # only default arguments here
-        gr.sync_block.__init__(
-            self,
-            name='Burst to fn_time',
-            in_sig=[],
-            out_sig=[]
-        )
-        self.message_port_register_in(pmt.intern("bursts_in"))
-        self.message_port_register_out(pmt.intern("fn_time_out"))
-        self.set_msg_handler(pmt.intern("bursts_in"), self.convert)
-    
-    def convert(self, msg):
-        fn_time = pmt.dict_ref(pmt.car(msg),pmt.intern("fn_time"),pmt.PMT_NIL)
-        fn_time_msg = pmt.dict_add(pmt.make_dict(), pmt.intern("fn_time"), fn_time)
-        if pmt.to_python(fn_time) is not None:
-            self.message_port_pub(pmt.intern("fn_time_out"), fn_time_msg)
-</value>
     </param>
     <param>
       <key>comment</key>
@@ -374,11 +546,11 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 368)</value>
+      <value>(992, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -386,7 +558,23 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>bursts_to_fn_time_0</value>
+      <value>delay_correction</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>delay_correction</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>272.5e-6</value>
     </param>
   </block>
   <block>
@@ -409,7 +597,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 440)</value>
+      <value>(232, 440)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -487,16 +675,12 @@ class gsmtap_header_remover(gr.sync_block):
       <value>d</value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>939.4e6</value>
+      <value>938600000</value>
     </param>
   </block>
   <block>
@@ -534,16 +718,12 @@ class gsmtap_header_remover(gr.sync_block):
       <value>u</value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>942e6</value>
+      <value>939.2e6</value>
     </param>
   </block>
   <block>
@@ -581,16 +761,12 @@ class gsmtap_header_remover(gr.sync_block):
       <value>g</value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>60</value>
+      <value>40</value>
     </param>
   </block>
   <block>
@@ -628,16 +804,12 @@ class gsmtap_header_remover(gr.sync_block):
       <value>r</value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>30</value>
+      <value>20</value>
     </param>
   </block>
   <block>
@@ -684,6 +856,57 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>gsm_clock_offset_control</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(432, 350)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_clock_offset_control_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>osr</key>
+      <value>osr</value>
+    </param>
+    <param>
+      <key>fc</key>
+      <value>fc_downlink</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate_downlink</value>
+    </param>
+  </block>
+  <block>
     <key>gsm_control_channels_decoder</key>
     <param>
       <key>alias</key>
@@ -726,7 +949,7 @@ class gsmtap_header_remover(gr.sync_block):
     <key>gsm_gmsk_mod</key>
     <param>
       <key>BT</key>
-      <value>4</value>
+      <value>0.3</value>
     </param>
     <param>
       <key>alias</key>
@@ -746,7 +969,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 452)</value>
+      <value>(456, 454)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -770,7 +993,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>sps</key>
-      <value>4</value>
+      <value>osr</value>
     </param>
   </block>
   <block>
@@ -793,7 +1016,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 248)</value>
+      <value>(296, 249)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -821,11 +1044,11 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>ppm</key>
-      <value>-0.5</value>
+      <value>-1</value>
     </param>
     <param>
       <key>samp_rate_in</key>
-      <value>samp_rate</value>
+      <value>samp_rate_downlink</value>
     </param>
   </block>
   <block>
@@ -844,7 +1067,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -899,7 +1122,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 232)</value>
+      <value>(544, 233)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -950,7 +1173,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1160, 456)</value>
+      <value>(1176, 457)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -958,7 +1181,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>gsm_txtime_bursts_tagger_0</value>
+      <value>gsm_txtime_bursts_tagger_1</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -967,6 +1190,10 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>delay_correction</key>
+      <value>delay_correction</value>
     </param>
     <param>
       <key>init_fn</key>
@@ -980,6 +1207,10 @@ class gsmtap_header_remover(gr.sync_block):
       <key>time_hint</key>
       <value>0</value>
     </param>
+    <param>
+      <key>timing_advance</key>
+      <value>0</value>
+    </param>
   </block>
   <block>
     <key>epy_block</key>
@@ -989,7 +1220,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('GSMTAP Header Remover', 'gsmtap_header_remover', [], [('bursts_in', 'message', 1)], [('bursts_out', 'message', 1)], '', [])</value>
+      <value>('GSMTAP Header Remover', 'gsmtap_header_remover', [], [('bursts_in', 'message')], [('bursts_out', 'message')], '')</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1038,7 +1269,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(928, 472)</value>
+      <value>(952, 473)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1046,7 +1277,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>header_remover_0</value>
+      <value>gsmtap_header_remover_0</value>
     </param>
   </block>
   <block>
@@ -1084,10 +1315,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value></value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>intx</value>
     </param>
@@ -1097,14 +1324,109 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>qtgui_sink_x</key>
+    <param>
+      <key>bw</key>
+      <value>samp_rate_downlink</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>fc</key>
+      <value>fc_downlink</value>
+    </param>
+    <param>
+      <key>freqchangevar</key>
+      <value>None</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>fftsize</key>
+      <value>1024</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(296, 127)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>qtgui_sink_x_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>name</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>plotconst</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>plotfreq</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>plottime</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>plotwaterfall</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>showports</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>showrf</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>rate</key>
+      <value>10</value>
+    </param>
+    <param>
+      <key>wintype</key>
+      <value>firdes.WIN_BLACKMAN_hARRIS</value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
       <value>False</value>
-    </param>
-    <param>
-      <key>axislabels</key>
-      <value>True</value>
     </param>
     <param>
       <key>alias</key>
@@ -1128,7 +1450,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1494,8 +1816,47 @@ class gsmtap_header_remover(gr.sync_block):
       <value></value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>13e6/12.0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 119)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>samp_rate_downlink</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>samp_rate_downlink</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
     </param>
     <param>
       <key>type</key>
@@ -1503,7 +1864,50 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>value</key>
-      <value>13e6/12.0</value>
+      <value>13e6/12.0*2</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(856, -1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>timing_advance</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>timing_advance</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -2178,7 +2582,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 436)</value>
+      <value>(0, 442)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2305,10 +2709,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>False</value>
     </param>
     <param>
-      <key>hide_lo_controls</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>stream_args</key>
       <value></value>
     </param>
@@ -2318,7 +2718,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>sync</key>
-      <value>sync</value>
+      <value></value>
     </param>
     <param>
       <key>len_tag_name</key>
@@ -2364,14 +2764,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>gain_downlink</value>
     </param>
     <param>
-      <key>lo_export0</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source0</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant10</key>
       <value></value>
     </param>
@@ -2398,14 +2790,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain10</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export10</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source10</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant11</key>
@@ -2436,14 +2820,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export11</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source11</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant12</key>
       <value></value>
     </param>
@@ -2470,14 +2846,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain12</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export12</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source12</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant13</key>
@@ -2508,14 +2876,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export13</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source13</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant14</key>
       <value></value>
     </param>
@@ -2542,14 +2902,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain14</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export14</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source14</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant15</key>
@@ -2580,14 +2932,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export15</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source15</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant16</key>
       <value></value>
     </param>
@@ -2614,14 +2958,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain16</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export16</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source16</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant17</key>
@@ -2652,14 +2988,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export17</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source17</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant18</key>
       <value></value>
     </param>
@@ -2686,14 +3014,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain18</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export18</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source18</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant19</key>
@@ -2724,14 +3044,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export19</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source19</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant1</key>
       <value>RX2</value>
     </param>
@@ -2758,14 +3070,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain1</key>
       <value>30</value>
-    </param>
-    <param>
-      <key>lo_export1</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source1</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant20</key>
@@ -2796,14 +3100,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export20</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source20</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant21</key>
       <value></value>
     </param>
@@ -2830,14 +3126,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain21</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export21</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source21</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant22</key>
@@ -2868,14 +3156,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export22</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source22</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant23</key>
       <value></value>
     </param>
@@ -2902,14 +3182,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain23</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export23</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source23</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant24</key>
@@ -2940,14 +3212,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export24</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source24</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant25</key>
       <value></value>
     </param>
@@ -2974,14 +3238,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain25</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export25</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source25</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant26</key>
@@ -3012,14 +3268,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export26</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source26</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant27</key>
       <value></value>
     </param>
@@ -3046,14 +3294,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain27</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export27</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source27</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant28</key>
@@ -3084,14 +3324,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export28</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source28</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant29</key>
       <value></value>
     </param>
@@ -3118,14 +3350,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain29</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export29</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source29</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant2</key>
@@ -3156,14 +3380,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export2</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source2</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant30</key>
       <value></value>
     </param>
@@ -3190,14 +3406,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain30</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export30</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source30</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant31</key>
@@ -3228,14 +3436,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export31</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source31</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant3</key>
       <value></value>
     </param>
@@ -3262,14 +3462,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain3</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export3</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source3</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant4</key>
@@ -3300,14 +3492,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export4</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source4</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant5</key>
       <value></value>
     </param>
@@ -3334,14 +3518,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain5</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export5</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source5</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant6</key>
@@ -3372,14 +3548,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export6</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source6</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant7</key>
       <value></value>
     </param>
@@ -3406,14 +3574,6 @@ class gsmtap_header_remover(gr.sync_block):
     <param>
       <key>gain7</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export7</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source7</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant8</key>
@@ -3444,14 +3604,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export8</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source8</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant9</key>
       <value></value>
     </param>
@@ -3480,14 +3632,6 @@ class gsmtap_header_remover(gr.sync_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export9</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source9</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>clock_rate</key>
       <value>26e6</value>
     </param>
@@ -3513,7 +3657,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 216)</value>
+      <value>(8, 216)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3641,15 +3785,11 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>samp_rate</key>
-      <value>samp_rate</value>
+      <value>samp_rate_downlink</value>
     </param>
     <param>
       <key>hide_cmd_port</key>
       <value>False</value>
-    </param>
-    <param>
-      <key>hide_lo_controls</key>
-      <value>True</value>
     </param>
     <param>
       <key>stream_args</key>
@@ -3670,7 +3810,13 @@ class gsmtap_header_remover(gr.sync_block):
   </block>
   <connection>
     <source_block_id>add_const_to_frame_number</source_block_id>
-    <sink_block_id>gsm_txtime_bursts_tagger_0</sink_block_id>
+    <sink_block_id>burst_type_filter_1</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>bursts_in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>add_const_to_frame_number</source_block_id>
+    <sink_block_id>gsm_txtime_bursts_tagger_1</sink_block_id>
     <source_key>bursts_out</source_key>
     <sink_key>bursts</sink_key>
   </connection>
@@ -3687,16 +3833,22 @@ class gsmtap_header_remover(gr.sync_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>burst_types_filter_0</source_block_id>
-    <sink_block_id>bursts_to_fn_time_0</sink_block_id>
-    <source_key>bursts_out</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>bursts_to_fn_time_0</source_block_id>
-    <sink_block_id>gsm_txtime_bursts_tagger_0</sink_block_id>
+    <source_block_id>burst_to_fn_time_0</source_block_id>
+    <sink_block_id>gsm_txtime_bursts_tagger_1</sink_block_id>
     <source_key>fn_time_out</source_key>
     <sink_key>fn_time</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>burst_type_filter_1</source_block_id>
+    <sink_block_id>gsm_txtime_bursts_tagger_1</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>bursts</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>burst_types_filter_0</source_block_id>
+    <sink_block_id>burst_to_fn_time_0</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_burst_shaper_xx_0</source_block_id>
@@ -3709,6 +3861,12 @@ class gsmtap_header_remover(gr.sync_block):
     <sink_block_id>gsm_control_channels_decoder_0</sink_block_id>
     <source_key>bursts</source_key>
     <sink_key>bursts</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_clock_offset_control_0</source_block_id>
+    <sink_block_id>gsm_input_0_0_0</sink_block_id>
+    <source_key>ctrl</source_key>
+    <sink_key>ctrl_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_control_channels_decoder_0</source_block_id>
@@ -3742,6 +3900,12 @@ class gsmtap_header_remover(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>C0</source_key>
+    <sink_key>print_pdu</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_receiver_0</source_block_id>
     <sink_block_id>burst_types_filter_0</sink_block_id>
     <source_key>C0</source_key>
     <sink_key>bursts_in</sink_key>
@@ -3753,20 +3917,44 @@ class gsmtap_header_remover(gr.sync_block):
     <sink_key>bursts</sink_key>
   </connection>
   <connection>
-    <source_block_id>gsm_txtime_bursts_tagger_0</source_block_id>
-    <sink_block_id>header_remover_0</sink_block_id>
+    <source_block_id>gsm_receiver_0</source_block_id>
+    <sink_block_id>gsm_clock_offset_control_0</sink_block_id>
+    <source_key>measurements</source_key>
+    <sink_key>measurements</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_txtime_bursts_tagger_1</source_block_id>
+    <sink_block_id>gsmtap_header_remover_0</sink_block_id>
     <source_key>bursts</source_key>
     <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
-    <source_block_id>header_remover_0</source_block_id>
+    <source_block_id>gsmtap_header_remover_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>print_pdu</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsmtap_header_remover_0</source_block_id>
     <sink_block_id>blocks_pdu_to_tagged_stream_0_0</sink_block_id>
     <source_key>bursts_out</source_key>
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>gsm_input_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>uhd_usrp_source_0</source_block_id>
+    <sink_block_id>qtgui_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
