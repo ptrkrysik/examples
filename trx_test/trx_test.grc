@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.12'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Wed Sep 13 23:00:21 2017</timestamp>
   <block>
@@ -38,7 +38,7 @@
     </param>
     <param>
       <key>generate_options</key>
-      <value>no_gui</value>
+      <value>qt_gui</value>
     </param>
     <param>
       <key>hier_block_src_path</key>
@@ -87,6 +87,69 @@
     <param>
       <key>placement</key>
       <value>(0,0)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>fc_downlink</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1144, 0)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fc_downlink_slider</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>fc_downlink_slider</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>100e3</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>10e9</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -236,11 +299,11 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 681)</value>
+      <value>(1448, 385)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>0</value>
     </param>
     <param>
       <key>id</key>
@@ -318,7 +381,7 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 742)</value>
+      <value>(248, 630)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -334,11 +397,11 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>filter</key>
-      <value>"packet_len"</value>
+      <value>"tx_time"</value>
     </param>
     <param>
       <key>name</key>
-      <value>sh</value>
+      <value></value>
     </param>
     <param>
       <key>num_inputs</key>
@@ -357,70 +420,7 @@ class add_const_to_frame_number(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Burst to fn_time', 'burst_to_fn_time', [], [('bursts_in', 'message', 1)], [('fn_time_out', 'message', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-import pmt
-
-class burst_to_fn_time(gr.basic_block):
-    def __init__(self):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='Burst to fn_time',
-            in_sig=[],
-            out_sig=[]
-        )
-        self.message_port_register_in(pmt.intern("bursts_in"))
-        self.message_port_register_out(pmt.intern("fn_time_out"))
-        self.set_msg_handler(pmt.intern("bursts_in"), self.convert)
-    
-    def convert(self, msg):
-        fn_time = pmt.dict_ref(pmt.car(msg),pmt.intern("fn_time"),pmt.PMT_NIL)
-        fn_time_msg = pmt.dict_add(pmt.make_dict(), pmt.intern("fn_time"), fn_time)
-        if pmt.to_python(fn_time) is not None:
-            self.message_port_pub(pmt.intern("fn_time_out"), fn_time_msg)
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1336, 408)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>burst_to_fn_time_0</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Change sign of elts in dict', 'change_sign_of_dict_elements', [], [('dict_in', 'message', 1)], [('dict_out', 'message', 1)], '', [])</value>
+      <value>('Change sign of elts in dict', 'change_sign_of_dict_elements', [], [('dict_in', 'message')], [('dict_out', 'message')], '')</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -475,77 +475,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>id</key>
       <value>burst_to_fn_time_0_0</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Burst type filter', 'burst_type_filter', [('burst_types', '[]')], [('bursts_in', 'message')], [('bursts_out', 'message')], '')</value>
-    </param>
-    <param>
-      <key>burst_types</key>
-      <value>[1,3,6]</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-import pmt
-
-class burst_type_filter2(gr.sync_block):
-    def __init__(self, burst_types=[]):
-        gr.sync_block.__init__(
-            self,
-            name='Burst type filter',
-            in_sig=[],
-            out_sig=[]
-        )
-        self.burst_types = burst_types
-        self.message_port_register_in(pmt.intern("bursts_in"))
-        self.message_port_register_out(pmt.intern("bursts_out"))
-        self.set_msg_handler(pmt.intern("bursts_in"), self.filter)
-    
-    def filter(self, msg):
-        burst_with_header = pmt.to_python(pmt.cdr(msg))
-        burst = burst_with_header[-148:]
-        header = np.ndarray.tolist(burst_with_header[0:-148])
-        burst_type = header[12]
-        if burst_type in self.burst_types:
-            self.message_port_pub(pmt.intern("bursts_out"), msg)
-
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1344, 332)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>burst_type_filter_1</value>
     </param>
   </block>
   <block>
@@ -905,11 +834,11 @@ class burst_type_filter2(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 368)</value>
+      <value>(1248, 369)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -969,49 +898,6 @@ class burst_type_filter2(gr.sync_block):
     <param>
       <key>selected_burst_types</key>
       <value>[3]</value>
-    </param>
-  </block>
-  <block>
-    <key>gsm_burst_type_filter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1336, 284)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gsm_burst_type_filter_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>selected_burst_types</key>
-      <value>[1,3,6]</value>
     </param>
   </block>
   <block>
@@ -1461,65 +1347,6 @@ class burst_type_filter2(gr.sync_block):
     </param>
   </block>
   <block>
-    <key>gsm_txtime_bursts_tagger</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1440, 665)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>180</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gsm_txtime_bursts_tagger_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>delay_correction</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>init_fn</key>
-      <value>None</value>
-    </param>
-    <param>
-      <key>init_time</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>time_hint</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>timing_advance</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>gsm_txtime_setter</key>
     <param>
       <key>alias</key>
@@ -1584,74 +1411,6 @@ class burst_type_filter2(gr.sync_block):
     <param>
       <key>timing_advance</key>
       <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('GSMTAP Header Remover', 'gsmtap_header_remover', [], [('bursts_in', 'message', 1)], [('bursts_out', 'message', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-import pmt
-
-class gsmtap_header_remover(gr.sync_block):
-    def __init__(self):  # only default arguments here
-        gr.sync_block.__init__(
-            self,
-            name='GSMTAP Header Remover',
-            in_sig=[],
-            out_sig=[]
-        )
-        self.message_port_register_in(pmt.intern("bursts_in"))
-        self.message_port_register_out(pmt.intern("bursts_out"))
-        self.set_msg_handler(pmt.intern("bursts_in"), self.remove_header)
-    
-    def remove_header(self, msg):
-        burst_with_header = pmt.to_python(pmt.cdr(msg))
-        burst = burst_with_header[-148:]
-        header = np.ndarray.tolist(burst_with_header[0:-148])
-        fn = burst_with_header[11]+burst_with_header[10]*2**8+burst_with_header[9]*2**16+burst_with_header[8]*2**24
-        car = pmt.car(msg)
-#        new_car = pmt.dict_add( car, pmt.intern("gsmtap_header"), pmt.to_pmt(header) )
-#        new_car = pmt.dict_add(car, pmt.intern("fn"), pmt.to_pmt(fn) )
-        new_msg = pmt.cons(car, pmt.to_pmt(burst))
-        self.message_port_pub(pmt.intern("bursts_out"), new_msg)
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1352, 768)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>180</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gsmtap_header_remover_0</value>
     </param>
   </block>
   <block>
@@ -2197,7 +1956,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>value</key>
-      <value>13e6/12.0</value>
+      <value>13.0e6/12.0</value>
     </param>
   </block>
   <block>
@@ -2244,7 +2003,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>value</key>
-      <value>13e6/12.0</value>
+      <value>13.0e6/12.0</value>
     </param>
   </block>
   <block>
@@ -3133,7 +2892,7 @@ class gsmtap_header_remover(gr.sync_block):
     </param>
     <param>
       <key>center_freq0</key>
-      <value>fc_downlink</value>
+      <value>fc_downlink_slider</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>
@@ -4458,18 +4217,6 @@ class gsmtap_header_remover(gr.sync_block):
   </block>
   <connection>
     <source_block_id>add_const_to_frame_number</source_block_id>
-    <sink_block_id>burst_type_filter_1</sink_block_id>
-    <source_key>bursts_out</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>add_const_to_frame_number</source_block_id>
-    <sink_block_id>gsm_burst_type_filter_0_0</sink_block_id>
-    <source_key>bursts_out</source_key>
-    <sink_key>in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>add_const_to_frame_number</source_block_id>
     <sink_block_id>gsm_txtime_setter_0</sink_block_id>
     <source_key>bursts_out</source_key>
     <sink_key>bursts_in</sink_key>
@@ -4479,18 +4226,6 @@ class gsmtap_header_remover(gr.sync_block):
     <sink_block_id>gsm_gmsk_mod_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>burst_to_fn_time_0</source_block_id>
-    <sink_block_id>gsm_txtime_bursts_tagger_1</sink_block_id>
-    <source_key>fn_time_out</source_key>
-    <sink_key>fn_time</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>burst_to_fn_time_0</source_block_id>
-    <sink_block_id>gsm_txtime_setter_0</sink_block_id>
-    <source_key>fn_time_out</source_key>
-    <sink_key>fn_time</sink_key>
   </connection>
   <connection>
     <source_block_id>burst_to_fn_time_0_0</source_block_id>
@@ -4512,32 +4247,20 @@ class gsmtap_header_remover(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>gsm_burst_to_fn_time_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>fn_time_out</source_key>
+    <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_burst_to_fn_time_0</source_block_id>
     <sink_block_id>gsm_txtime_setter_0</sink_block_id>
-    <source_key>bursts_out</source_key>
+    <source_key>fn_time_out</source_key>
     <sink_key>fn_time</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_burst_type_filter_0</source_block_id>
-    <sink_block_id>burst_to_fn_time_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_burst_type_filter_0</source_block_id>
     <sink_block_id>gsm_burst_to_fn_time_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_burst_type_filter_0_0</source_block_id>
-    <sink_block_id>gsm_txtime_bursts_tagger_1</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>bursts</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_burst_type_filter_0_0</source_block_id>
-    <sink_block_id>gsm_txtime_setter_0</sink_block_id>
-    <source_key>out</source_key>
+    <source_key>bursts_out</source_key>
     <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
@@ -4566,13 +4289,13 @@ class gsmtap_header_remover(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>gsm_controlled_rotator_cc_0_0</source_block_id>
-    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
+    <sink_block_id>blocks_tag_debug_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gsm_gmsk_mod_0</source_block_id>
-    <sink_block_id>blocks_tag_debug_0</sink_block_id>
+    <source_block_id>gsm_controlled_rotator_cc_0_0</source_block_id>
+    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4616,7 +4339,7 @@ class gsmtap_header_remover(gr.sync_block):
     <source_block_id>gsm_receiver_0</source_block_id>
     <sink_block_id>gsm_burst_type_filter_0</sink_block_id>
     <source_key>C0</source_key>
-    <sink_key>in</sink_key>
+    <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
@@ -4625,34 +4348,10 @@ class gsmtap_header_remover(gr.sync_block):
     <sink_key>measurements</sink_key>
   </connection>
   <connection>
-    <source_block_id>gsm_txtime_bursts_tagger_1</source_block_id>
-    <sink_block_id>blocks_message_debug_0</sink_block_id>
-    <source_key>bursts</source_key>
-    <sink_key>print_pdu</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_txtime_bursts_tagger_1</source_block_id>
-    <sink_block_id>gsm_preprocess_tx_burst_0</sink_block_id>
-    <source_key>bursts</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
     <source_block_id>gsm_txtime_setter_0</source_block_id>
     <sink_block_id>gsm_preprocess_tx_burst_0</sink_block_id>
     <source_key>bursts_out</source_key>
     <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsm_txtime_setter_0</source_block_id>
-    <sink_block_id>gsmtap_header_remover_0</sink_block_id>
-    <source_key>bursts_out</source_key>
-    <sink_key>bursts_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gsmtap_header_remover_0</source_block_id>
-    <sink_block_id>blocks_pdu_to_tagged_stream_0_0</sink_block_id>
-    <source_key>bursts_out</source_key>
-    <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>low_pass_filter_0_0</source_block_id>

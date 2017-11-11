@@ -5,7 +5,7 @@
 # Title: Trx radio interface
 # Author: (C) Piotr Krysik 2017
 # Description: Alpha version of trx radio interface
-# Generated: Wed Nov  8 14:27:25 2017
+# Generated: Sat Nov 11 11:20:15 2017
 ##################################################
 
 from gnuradio import blocks
@@ -56,7 +56,7 @@ class trx_radio_if(gr.top_block):
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         self.uhd_usrp_source_0.set_center_freq(fc_downlink, 0)
         self.uhd_usrp_source_0.set_gain(gain_downlink, 0)
-        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0.set_antenna("RX2", 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -66,15 +66,15 @@ class trx_radio_if(gr.top_block):
         	"packet_len",
         )
         self.uhd_usrp_sink_0.set_clock_rate(26e6, uhd.ALL_MBOARDS)
-        self.uhd_usrp_sink_0.set_subdev_spec('A:B', 0)
+        self.uhd_usrp_sink_0.set_subdev_spec("A:B", 0)
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_center_freq(fc_uplink, 0)
         self.uhd_usrp_sink_0.set_gain(gain_uplink, 0)
-        self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
+        self.uhd_usrp_sink_0.set_antenna("TX/RX", 0)
         self.low_pass_filter_0_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate, 125e3, 5e3, firdes.WIN_HAMMING, 6.76))
         self.gsm_txtime_setter_0 = grgsm.txtime_setter(None if (None is not None) else 0xffffffff, 0, 0, 0, 0, 0, 0)
-        self.gsm_trx_burst_if_0 = grgsm.trx_burst_if('127.0.0.1', '5700')
+        self.gsm_trx_burst_if_0 = grgsm.trx_burst_if("127.0.0.1", "5700")
         self.gsm_receiver_0 = grgsm.receiver(4, ([0]), ([4]), False)
         self.gsm_preprocess_tx_burst_0 = grgsm.preprocess_tx_burst()
         self.gsm_msg_to_tag_0_0 = grgsm.msg_to_tag()
@@ -89,29 +89,27 @@ class trx_radio_if(gr.top_block):
         self.gsm_burst_type_filter_0 = grgsm.burst_type_filter(([3]))
         self.gsm_burst_to_fn_time_0 = grgsm.burst_to_fn_time()
         self.digital_burst_shaper_xx_0 = digital.burst_shaper_cc((firdes.window(firdes.WIN_HANN, 16, 0)), 0, 20, False, "packet_len")
-        self.blocks_pdu_to_tagged_stream_0_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'packet_len')
-
-
+        self.blocks_pdu_to_tagged_stream_0_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, "packet_len")
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.gsm_burst_to_fn_time_0, 'bursts_out'), (self.gsm_txtime_setter_0, 'fn_time'))
-        self.msg_connect((self.gsm_burst_type_filter_0, 'out'), (self.gsm_burst_to_fn_time_0, 'bursts_in'))
-        self.msg_connect((self.gsm_preprocess_tx_burst_0, 'bursts_out'), (self.blocks_pdu_to_tagged_stream_0_0, 'pdus'))
-        self.msg_connect((self.gsm_receiver_0, 'C0'), (self.gsm_burst_type_filter_0, 'in'))
-        self.msg_connect((self.gsm_receiver_0, 'C0'), (self.gsm_trx_burst_if_0, 'bursts'))
-        self.msg_connect((self.gsm_trx_burst_if_0, 'bursts'), (self.gsm_txtime_setter_0, 'bursts_in'))
-        self.msg_connect((self.gsm_txtime_setter_0, 'bursts_out'), (self.gsm_preprocess_tx_burst_0, 'bursts_in'))
-        self.connect((self.blocks_pdu_to_tagged_stream_0_0, 0), (self.gsm_gmsk_mod_0, 0))
-        self.connect((self.digital_burst_shaper_xx_0, 0), (self.gsm_msg_to_tag_0_0, 0))
-        self.connect((self.gsm_controlled_rotator_cc_0, 0), (self.low_pass_filter_0_0, 0))
-        self.connect((self.gsm_controlled_rotator_cc_0_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.gsm_gmsk_mod_0, 0), (self.digital_burst_shaper_xx_0, 0))
-        self.connect((self.gsm_msg_to_tag_0, 0), (self.gsm_controlled_rotator_cc_0, 0))
-        self.connect((self.gsm_msg_to_tag_0_0, 0), (self.gsm_controlled_rotator_cc_0_0, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.gsm_receiver_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.gsm_msg_to_tag_0, 0))
+        self.msg_connect((self.gsm_burst_to_fn_time_0, 'fn_time_out'), (self.gsm_txtime_setter_0, 'fn_time'))    
+        self.msg_connect((self.gsm_burst_type_filter_0, 'bursts_out'), (self.gsm_burst_to_fn_time_0, 'bursts_in'))    
+        self.msg_connect((self.gsm_preprocess_tx_burst_0, 'bursts_out'), (self.blocks_pdu_to_tagged_stream_0_0, 'pdus'))    
+        self.msg_connect((self.gsm_receiver_0, 'C0'), (self.gsm_burst_type_filter_0, 'bursts_in'))    
+        self.msg_connect((self.gsm_receiver_0, 'C0'), (self.gsm_trx_burst_if_0, 'bursts'))    
+        self.msg_connect((self.gsm_trx_burst_if_0, 'bursts'), (self.gsm_txtime_setter_0, 'bursts_in'))    
+        self.msg_connect((self.gsm_txtime_setter_0, 'bursts_out'), (self.gsm_preprocess_tx_burst_0, 'bursts_in'))    
+        self.connect((self.blocks_pdu_to_tagged_stream_0_0, 0), (self.gsm_gmsk_mod_0, 0))    
+        self.connect((self.digital_burst_shaper_xx_0, 0), (self.gsm_msg_to_tag_0_0, 0))    
+        self.connect((self.gsm_controlled_rotator_cc_0, 0), (self.low_pass_filter_0_0, 0))    
+        self.connect((self.gsm_controlled_rotator_cc_0_0, 0), (self.uhd_usrp_sink_0, 0))    
+        self.connect((self.gsm_gmsk_mod_0, 0), (self.digital_burst_shaper_xx_0, 0))    
+        self.connect((self.gsm_msg_to_tag_0, 0), (self.gsm_controlled_rotator_cc_0, 0))    
+        self.connect((self.gsm_msg_to_tag_0_0, 0), (self.gsm_controlled_rotator_cc_0_0, 0))    
+        self.connect((self.low_pass_filter_0_0, 0), (self.gsm_receiver_0, 0))    
+        self.connect((self.uhd_usrp_source_0, 0), (self.gsm_msg_to_tag_0, 0))    
 
     def get_delay_correction(self):
         return self.delay_correction
@@ -124,18 +122,18 @@ class trx_radio_if(gr.top_block):
 
     def set_fc_downlink(self, fc_downlink):
         self.fc_downlink = fc_downlink
+        self.gsm_controlled_rotator_cc_0.set_phase_inc(self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
+        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
         self.uhd_usrp_source_0.set_center_freq(self.fc_downlink, 0)
         self.uhd_usrp_source_0.set_center_freq(uhd.tune_request_t(self.fc_downlink, self.fc_uplink-self.fc_downlink), 1)
-        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
-        self.gsm_controlled_rotator_cc_0.set_phase_inc(self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
 
     def get_fc_uplink(self):
         return self.fc_uplink
 
     def set_fc_uplink(self, fc_uplink):
         self.fc_uplink = fc_uplink
-        self.uhd_usrp_source_0.set_center_freq(uhd.tune_request_t(self.fc_downlink, self.fc_uplink-self.fc_downlink), 1)
         self.uhd_usrp_sink_0.set_center_freq(self.fc_uplink, 0)
+        self.uhd_usrp_source_0.set_center_freq(uhd.tune_request_t(self.fc_downlink, self.fc_uplink-self.fc_downlink), 1)
 
     def get_gain_downlink(self):
         return self.gain_downlink
@@ -143,7 +141,7 @@ class trx_radio_if(gr.top_block):
     def set_gain_downlink(self, gain_downlink):
         self.gain_downlink = gain_downlink
         self.uhd_usrp_source_0.set_gain(self.gain_downlink, 0)
-
+        	
 
     def get_gain_uplink(self):
         return self.gain_uplink
@@ -151,7 +149,7 @@ class trx_radio_if(gr.top_block):
     def set_gain_uplink(self, gain_uplink):
         self.gain_uplink = gain_uplink
         self.uhd_usrp_sink_0.set_gain(self.gain_uplink, 0)
-
+        	
 
     def get_osr(self):
         return self.osr
@@ -165,19 +163,19 @@ class trx_radio_if(gr.top_block):
 
     def set_ppm(self, ppm):
         self.ppm = ppm
-        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
         self.gsm_controlled_rotator_cc_0.set_phase_inc(self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
+        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 125e3, 5e3, firdes.WIN_HAMMING, 6.76))
-        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
         self.gsm_controlled_rotator_cc_0.set_phase_inc(self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
+        self.gsm_controlled_rotator_cc_0_0.set_phase_inc(-self.ppm/1.0e6*2*math.pi*self.fc_downlink/self.samp_rate)
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 125e3, 5e3, firdes.WIN_HAMMING, 6.76))
+        self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
 
     def get_samp_rate_downlink(self):
         return self.samp_rate_downlink
@@ -193,8 +191,7 @@ class trx_radio_if(gr.top_block):
 
 
 def argument_parser():
-    description = 'Alpha version of trx radio interface'
-    parser = OptionParser(usage="%prog: [options]", option_class=eng_option, description=description)
+    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
     parser.add_option(
         "", "--delay-correction", dest="delay_correction", type="eng_float", default=eng_notation.num_to_str(285.616e-6),
         help="Set delay_correction [default=%default]")

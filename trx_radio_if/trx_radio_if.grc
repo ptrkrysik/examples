@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.12'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Wed Sep 13 23:00:21 2017</timestamp>
   <block>
@@ -144,7 +144,7 @@
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Change sign of elts in dict', 'change_sign_of_dict_elements', [], [('dict_in', 'message', 1)], [('dict_out', 'message', 1)], '', [])</value>
+      <value>('Change sign of elts in dict', 'change_sign_of_dict_elements', [], [('dict_in', 'message')], [('dict_out', 'message')], '')</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -519,7 +519,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1480, 448)</value>
+      <value>(1480, 449)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3579,13 +3579,13 @@ class change_sign_of_dict_elements(gr.basic_block):
   <connection>
     <source_block_id>gsm_burst_to_fn_time_0</source_block_id>
     <sink_block_id>gsm_txtime_setter_0</sink_block_id>
-    <source_key>bursts_out</source_key>
+    <source_key>fn_time_out</source_key>
     <sink_key>fn_time</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_burst_type_filter_0</source_block_id>
     <sink_block_id>gsm_burst_to_fn_time_0</sink_block_id>
-    <source_key>out</source_key>
+    <source_key>bursts_out</source_key>
     <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
@@ -3640,7 +3640,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     <source_block_id>gsm_receiver_0</source_block_id>
     <sink_block_id>gsm_burst_type_filter_0</sink_block_id>
     <source_key>C0</source_key>
-    <sink_key>in</sink_key>
+    <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
