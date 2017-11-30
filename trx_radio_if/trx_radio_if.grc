@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>trx_radio_if</value>
+      <value>radio_if_grc</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -73,20 +73,12 @@
       <value>True</value>
     </param>
     <param>
-      <key>sizing_mode</key>
-      <value>fixed</value>
-    </param>
-    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value>Trx radio interface</value>
-    </param>
-    <param>
-      <key>placement</key>
-      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -217,7 +209,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, -1)</value>
+      <value>(512, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -234,10 +226,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>short_id</key>
       <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -312,7 +300,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
   </block>
   <block>
-    <key>parameter</key>
+    <key>gsm_burst_timeslot_filter</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -322,12 +310,16 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 0)</value>
+      <value>(1208, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -335,168 +327,19 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>id</key>
-      <value>fc_downlink</value>
+      <value>gsm_burst_timeslot_filter_0</value>
     </param>
     <param>
-      <key>label</key>
-      <value>fc_downlink</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value>d</value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>eng_float</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>938600000</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(392, 0)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
+      <key>maxoutbuf</key>
       <value>0</value>
     </param>
     <param>
-      <key>id</key>
-      <value>fc_uplink</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>fc_uplink</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value>u</value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>eng_float</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>938900000</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(616, 0)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
+      <key>minoutbuf</key>
       <value>0</value>
     </param>
     <param>
-      <key>id</key>
-      <value>gain_downlink</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>gain_downlink</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value>g</value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>eng_float</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>40</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(744, 0)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
+      <key>timeslot</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gain_uplink</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>gain_uplink</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value>r</value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>eng_float</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>60</value>
     </param>
   </block>
   <block>
@@ -582,6 +425,49 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
   </block>
   <block>
+    <key>gsm_burst_type_filter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1008, 316)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_burst_type_filter_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>selected_burst_types</key>
+      <value>[1,3]</value>
+    </param>
+  </block>
+  <block>
     <key>gsm_clock_offset_control</key>
     <param>
       <key>alias</key>
@@ -629,7 +515,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>samp_rate</key>
-      <value>samp_rate_downlink</value>
+      <value>samp_rate</value>
     </param>
   </block>
   <block>
@@ -672,7 +558,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>phase_inc</key>
-      <value>ppm/1.0e6*2*math.pi*fc_downlink/samp_rate</value>
+      <value>ppm/1.0e6*2*math.pi*rx_freq/samp_rate</value>
     </param>
   </block>
   <block>
@@ -715,7 +601,46 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>phase_inc</key>
-      <value>-ppm/1.0e6*2*math.pi*fc_downlink/samp_rate</value>
+      <value>-ppm/1.0e6*2*math.pi*tx_freq/samp_rate</value>
+    </param>
+  </block>
+  <block>
+    <key>gsm_gen_test_ab</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1400, 329)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_gen_test_ab_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -961,7 +886,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1456, 220)</value>
+      <value>(1248, 221)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -981,11 +906,11 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>base_port</key>
-      <value>5700</value>
+      <value>trx_base_port</value>
     </param>
     <param>
       <key>remote_addr</key>
-      <value>127.0.0.1</value>
+      <value>trx_remote_addr</value>
     </param>
   </block>
   <block>
@@ -1028,7 +953,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>delay_correction</key>
-      <value>0</value>
+      <value>delay_correction+uplink_shift</value>
     </param>
     <param>
       <key>init_fn</key>
@@ -1052,7 +977,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>timing_advance</key>
-      <value>0</value>
+      <value>timing_advance</value>
     </param>
   </block>
   <block>
@@ -1071,7 +996,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 92)</value>
+      <value>(8, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1177,7 +1102,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 0)</value>
+      <value>(296, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1194,10 +1119,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>short_id</key>
       <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -1224,7 +1145,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 87)</value>
+      <value>(648, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1243,8 +1164,47 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>-1</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(96, 320)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rx_freq</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>rx_freq</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>d</value>
     </param>
     <param>
       <key>type</key>
@@ -1252,7 +1212,50 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>-1</value>
+      <value>938600000</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 320)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rx_gain</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>rx_gain</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>g</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>40</value>
     </param>
   </block>
   <block>
@@ -1290,10 +1293,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
@@ -1318,7 +1317,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 119)</value>
+      <value>(376, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1326,19 +1325,15 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>id</key>
-      <value>samp_rate_downlink</value>
+      <value>timing_advance</value>
     </param>
     <param>
       <key>label</key>
-      <value>samp_rate_downlink</value>
+      <value>timing_advance</value>
     </param>
     <param>
       <key>short_id</key>
       <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -1346,7 +1341,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>13e6/12.0</value>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -1365,7 +1360,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, -1)</value>
+      <value>(816, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1373,19 +1368,101 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>id</key>
-      <value>timing_advance</value>
+      <value>trx_base_port</value>
     </param>
     <param>
       <key>label</key>
-      <value>timing_advance</value>
+      <value>trx_base_port</value>
     </param>
     <param>
       <key>short_id</key>
       <value></value>
     </param>
     <param>
-      <key>hide</key>
-      <value>none</value>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>5700</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(920, -1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>trx_remote_addr</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>trx_remote_addr</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>127.0.0.1</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(88, 592)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_freq</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>tx_freq</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>u</value>
     </param>
     <param>
       <key>type</key>
@@ -1393,7 +1470,50 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
+      <value>938900000</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(0, 592)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_gain</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>tx_gain</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>r</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>30</value>
     </param>
   </block>
   <block>
@@ -1412,7 +1532,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>center_freq0</key>
-      <value>fc_uplink</value>
+      <value>tx_freq</value>
     </param>
     <param>
       <key>norm_gain0</key>
@@ -1420,7 +1540,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>gain0</key>
-      <value>gain_uplink</value>
+      <value>tx_gain</value>
     </param>
     <param>
       <key>ant10</key>
@@ -2195,10 +2315,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>False</value>
     </param>
     <param>
-      <key>hide_lo_controls</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>stream_args</key>
       <value></value>
     </param>
@@ -2235,7 +2351,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>center_freq0</key>
-      <value>fc_downlink</value>
+      <value>rx_freq</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>
@@ -2251,15 +2367,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>gain0</key>
-      <value>gain_downlink</value>
-    </param>
-    <param>
-      <key>lo_export0</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source0</key>
-      <value>internal</value>
+      <value>rx_gain</value>
     </param>
     <param>
       <key>ant10</key>
@@ -2290,14 +2398,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export10</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source10</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant11</key>
       <value></value>
     </param>
@@ -2324,14 +2424,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain11</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export11</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source11</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant12</key>
@@ -2362,14 +2454,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export12</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source12</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant13</key>
       <value></value>
     </param>
@@ -2396,14 +2480,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain13</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export13</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source13</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant14</key>
@@ -2434,14 +2510,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export14</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source14</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant15</key>
       <value></value>
     </param>
@@ -2468,14 +2536,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain15</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export15</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source15</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant16</key>
@@ -2506,14 +2566,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export16</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source16</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant17</key>
       <value></value>
     </param>
@@ -2540,14 +2592,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain17</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export17</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source17</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant18</key>
@@ -2578,14 +2622,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export18</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source18</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant19</key>
       <value></value>
     </param>
@@ -2614,14 +2650,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export19</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source19</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant1</key>
       <value>RX2</value>
     </param>
@@ -2631,7 +2659,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>center_freq1</key>
-      <value>uhd.tune_request_t(fc_downlink, fc_uplink-fc_downlink)</value>
+      <value>0</value>
     </param>
     <param>
       <key>dc_offs_enb1</key>
@@ -2647,15 +2675,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>gain1</key>
-      <value>30</value>
-    </param>
-    <param>
-      <key>lo_export1</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source1</key>
-      <value>internal</value>
+      <value>0</value>
     </param>
     <param>
       <key>ant20</key>
@@ -2686,14 +2706,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export20</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source20</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant21</key>
       <value></value>
     </param>
@@ -2720,14 +2732,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain21</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export21</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source21</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant22</key>
@@ -2758,14 +2762,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export22</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source22</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant23</key>
       <value></value>
     </param>
@@ -2792,14 +2788,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain23</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export23</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source23</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant24</key>
@@ -2830,14 +2818,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export24</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source24</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant25</key>
       <value></value>
     </param>
@@ -2864,14 +2844,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain25</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export25</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source25</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant26</key>
@@ -2902,14 +2874,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export26</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source26</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant27</key>
       <value></value>
     </param>
@@ -2936,14 +2900,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain27</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export27</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source27</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant28</key>
@@ -2974,14 +2930,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export28</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source28</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant29</key>
       <value></value>
     </param>
@@ -3008,14 +2956,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain29</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export29</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source29</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant2</key>
@@ -3046,14 +2986,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export2</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source2</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant30</key>
       <value></value>
     </param>
@@ -3080,14 +3012,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain30</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export30</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source30</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant31</key>
@@ -3118,14 +3042,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export31</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source31</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant3</key>
       <value></value>
     </param>
@@ -3152,14 +3068,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain3</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export3</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source3</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant4</key>
@@ -3190,14 +3098,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export4</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source4</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant5</key>
       <value></value>
     </param>
@@ -3224,14 +3124,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain5</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export5</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source5</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant6</key>
@@ -3262,14 +3154,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export6</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source6</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant7</key>
       <value></value>
     </param>
@@ -3296,14 +3180,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain7</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export7</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source7</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant8</key>
@@ -3334,14 +3210,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>0</value>
     </param>
     <param>
-      <key>lo_export8</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source8</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant9</key>
       <value></value>
     </param>
@@ -3368,14 +3236,6 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>gain9</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export9</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source9</key>
-      <value>internal</value>
     </param>
     <param>
       <key>clock_rate</key>
@@ -3538,10 +3398,6 @@ class change_sign_of_dict_elements(gr.basic_block):
       <value>False</value>
     </param>
     <param>
-      <key>hide_lo_controls</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>stream_args</key>
       <value></value>
     </param>
@@ -3556,6 +3412,49 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>otw</key>
       <value></value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(512, 79)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>uplink_shift</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>uplink_shift</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>-(6.0/1625000*(156.25)*3)</value>
     </param>
   </block>
   <connection>
@@ -3577,6 +3476,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>gsm_burst_timeslot_filter_0</source_block_id>
+    <sink_block_id>gsm_gen_test_ab_0</sink_block_id>
+    <source_key>out</source_key>
+    <sink_key>bursts_in</sink_key>
+  </connection>
+  <connection>
     <source_block_id>gsm_burst_to_fn_time_0</source_block_id>
     <sink_block_id>gsm_txtime_setter_0</sink_block_id>
     <source_key>fn_time_out</source_key>
@@ -3587,6 +3492,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_block_id>gsm_burst_to_fn_time_0</sink_block_id>
     <source_key>bursts_out</source_key>
     <sink_key>bursts_in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_burst_type_filter_0_0</source_block_id>
+    <sink_block_id>gsm_burst_timeslot_filter_0</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
@@ -3611,6 +3522,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_block_id>uhd_usrp_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_gen_test_ab_0</source_block_id>
+    <sink_block_id>gsm_txtime_setter_0</sink_block_id>
+    <source_key>bursts_out</source_key>
+    <sink_key>bursts_in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_gmsk_mod_0</source_block_id>
@@ -3639,6 +3556,12 @@ class change_sign_of_dict_elements(gr.basic_block):
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
     <sink_block_id>gsm_burst_type_filter_0</sink_block_id>
+    <source_key>C0</source_key>
+    <sink_key>bursts_in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_receiver_0</source_block_id>
+    <sink_block_id>gsm_burst_type_filter_0_0</sink_block_id>
     <source_key>C0</source_key>
     <sink_key>bursts_in</sink_key>
   </connection>
