@@ -82,6 +82,100 @@
     </param>
   </block>
   <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1040, 0)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>ppm_uplink</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>ppm_uplink</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>-10</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.05</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>10</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(312, 121)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>alias</key>
@@ -166,7 +260,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     def change_sign(self, msg):
         if is_dict(msg):
             d = to_python(msg)
-            print d
+            #print d
             for key, value in d.items():
                 d[key] *= -1
             self.message_port_pub(intern("dict_out"), to_pmt(d))
@@ -178,7 +272,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -190,7 +284,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>id</key>
-      <value>burst_to_fn_time_0_0</value>
+      <value>change_sign_of_dict_elements</value>
     </param>
   </block>
   <block>
@@ -297,6 +391,49 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>window</key>
       <value>firdes.window(firdes.WIN_HANN, 16, 0)</value>
+    </param>
+  </block>
+  <block>
+    <key>gsm_bcch_ccch_demapper</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1040, 148)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_bcch_ccch_demapper_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>timeslot_nr</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -464,7 +601,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>selected_burst_types</key>
-      <value>[1,3]</value>
+      <value>[1,3,6,7]</value>
     </param>
   </block>
   <block>
@@ -483,7 +620,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -511,11 +648,50 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>fc</key>
-      <value>fc_downlink</value>
+      <value>rx_freq</value>
     </param>
     <param>
       <key>samp_rate</key>
       <value>samp_rate</value>
+    </param>
+  </block>
+  <block>
+    <key>gsm_control_channels_decoder</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1264, 153)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_control_channels_decoder_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -692,6 +868,53 @@ class change_sign_of_dict_elements(gr.basic_block):
     <param>
       <key>sps</key>
       <value>osr</value>
+    </param>
+  </block>
+  <block>
+    <key>gsm_message_printer</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1528, 134)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gsm_message_printer_0</value>
+    </param>
+    <param>
+      <key>prepend_frame_count</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>prepend_fnr</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>prepend_string</key>
+      <value></value>
+    </param>
+    <param>
+      <key>print_gsmtap_header</key>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -1169,7 +1392,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>-1</value>
+      <value>-0.799427</value>
     </param>
   </block>
   <block>
@@ -1212,7 +1435,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>938600000</value>
+      <value>935e6+36*0.2e6</value>
     </param>
   </block>
   <block>
@@ -1384,7 +1607,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>5700</value>
+      <value>5710</value>
     </param>
   </block>
   <block>
@@ -1431,6 +1654,49 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
   </block>
   <block>
+    <key>gsm_burst_timeslot_filter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1048, 228)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>ts_filter</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>timeslot</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -1470,7 +1736,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>938900000</value>
+      <value>935e6+36*0.2e6-45e6</value>
     </param>
   </block>
   <block>
@@ -1513,7 +1779,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     </param>
     <param>
       <key>value</key>
-      <value>30</value>
+      <value>40</value>
     </param>
   </block>
   <block>
@@ -3464,7 +3730,7 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>burst_to_fn_time_0_0</source_block_id>
+    <source_block_id>change_sign_of_dict_elements</source_block_id>
     <sink_block_id>gsm_msg_to_tag_0_0</sink_block_id>
     <source_key>dict_out</source_key>
     <sink_key>msg</sink_key>
@@ -3474,6 +3740,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_block_id>gsm_msg_to_tag_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_bcch_ccch_demapper_0</source_block_id>
+    <sink_block_id>gsm_control_channels_decoder_0</sink_block_id>
+    <source_key>bursts</source_key>
+    <sink_key>bursts</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_burst_timeslot_filter_0</source_block_id>
@@ -3501,7 +3773,13 @@ class change_sign_of_dict_elements(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>gsm_clock_offset_control_0</source_block_id>
-    <sink_block_id>burst_to_fn_time_0_0</sink_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>ctrl</source_key>
+    <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_clock_offset_control_0</source_block_id>
+    <sink_block_id>change_sign_of_dict_elements</sink_block_id>
     <source_key>ctrl</source_key>
     <sink_key>dict_in</sink_key>
   </connection>
@@ -3510,6 +3788,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_block_id>gsm_msg_to_tag_0</sink_block_id>
     <source_key>ctrl</source_key>
     <sink_key>msg</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_control_channels_decoder_0</source_block_id>
+    <sink_block_id>gsm_message_printer_0</sink_block_id>
+    <source_key>msgs</source_key>
+    <sink_key>msgs</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_controlled_rotator_cc_0</source_block_id>
@@ -3555,6 +3839,12 @@ class change_sign_of_dict_elements(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
+    <sink_block_id>gsm_bcch_ccch_demapper_0</sink_block_id>
+    <source_key>C0</source_key>
+    <sink_key>bursts</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gsm_receiver_0</source_block_id>
     <sink_block_id>gsm_burst_type_filter_0</sink_block_id>
     <source_key>C0</source_key>
     <sink_key>bursts_in</sink_key>
@@ -3567,9 +3857,9 @@ class change_sign_of_dict_elements(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
-    <sink_block_id>gsm_trx_burst_if_0</sink_block_id>
+    <sink_block_id>ts_filter</sink_block_id>
     <source_key>C0</source_key>
-    <sink_key>bursts</sink_key>
+    <sink_key>in</sink_key>
   </connection>
   <connection>
     <source_block_id>gsm_receiver_0</source_block_id>
@@ -3594,6 +3884,12 @@ class change_sign_of_dict_elements(gr.basic_block):
     <sink_block_id>gsm_receiver_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>ts_filter</source_block_id>
+    <sink_block_id>gsm_trx_burst_if_0</sink_block_id>
+    <source_key>out</source_key>
+    <sink_key>bursts</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
